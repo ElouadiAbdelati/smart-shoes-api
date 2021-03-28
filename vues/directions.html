@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Directions Service</title>
+        <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="../direction.js"></script>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <b>Start: </b>
+      <select id="start">
+        <option value="Faculté des Sciences et Techniques, Boulevard Abdelkrim Al Khattabi, Marrakech">Faculté des Sciences et Techniques</option>
+        
+      </select>
+      <b>End: </b>
+      <select id="end">
+        <option value="Semlalia, Marrakech">Semlalia</option>
+        <option value="Gare De Marrakech">ENSA MARRAKECH</option>
+        <option value="Lycée Victor Hugo, Route de Targa, Marrakech">Lycée Victor Hugo</option>
+        <option value="PolyClinique Les Narcisses Marrakech, Route de Targa, Marrakech">PolyClinique Les Narcisses Marrakech</option>
+       
+      </select>
+    </div>
+    <div id="right-panel"></div>
+
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdc_xYILsBqekVgo0krUrH28RqZdoEYk4&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>
