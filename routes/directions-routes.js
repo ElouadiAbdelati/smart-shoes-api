@@ -1,10 +1,10 @@
 const express = require('express');
-const {showDirections
+const {getDirections
       } = require('../controllers/directionsController');
 
 const router = express.Router();
 
-router.get('/student', showDirections);
+router.post('/direction', getDirections);
 
 
 module.exports = {
