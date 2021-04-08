@@ -20,7 +20,6 @@ let str3='&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI'
 //create the query we are going to send to our google places api
  let Q=str1 +str2 +str3;
 //make an async request to the api
-
   try { 
         //get the result of the call in a parsed json format
       const response = await axios.get(Q)
