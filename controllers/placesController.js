@@ -34,7 +34,7 @@ let str3='&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI'
             addresses.push(element.formatted_address)
         }}); 
         
-        res.send(addresses);
+        res.json(addresses);
         
     } catch (error) {
         console.log(error.response.body);
