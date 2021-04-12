@@ -6,7 +6,7 @@ const dir = require('../models/directions');
 const firestore = firebase.firestore();
 const Steps = require('../models/steps');
 const request = require('request');
-const url = "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI";
+const url = "https://maps.googleapis.com/maps/api/directions/json?origin=Lycée+Victor+Hugo,+Route+de+Targa,+Marrakech&destination=Semlalia,+Marrakech&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI";
 
 
 const getDirections = async (req, res, next) => {
