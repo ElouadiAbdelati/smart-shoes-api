@@ -2,7 +2,7 @@
 const axios = require('axios'); 
 let url = require('url')
 let bodyParser = require('body-parser')
-
+const Adr = require('../models/adresses');
 
 
 let getPlaces = async (req, res, next) => {
@@ -29,9 +29,9 @@ let str3='&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI'
       results.forEach(element => {
         //extract the formatted_address of ead element 
         if(element.formatted_address!='Marrakesh 40000, Morocco'){
-            
+            var adressF=new Adr(element.formatted_address);
             //push the formatted addresses to adresses array
-            addresses.push(element.formatted_address)
+            addresses.push(adressF)
         }}); 
         
         res.json(addresses);

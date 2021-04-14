@@ -29,7 +29,7 @@ const getDirections = async (req, res, next) => {
         let results = response.data.routes[0].legs[0].steps;
         
         await firestore.collection('steps').doc().set(Object.assign({}, results));
-          res.send('Recorded');   
+          res.send(results);   
     } catch (error) {
         res.status(400).send(error.message);
         
