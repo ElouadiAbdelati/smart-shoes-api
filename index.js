@@ -23,7 +23,6 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true})); //support encoded bodies
-
 app.use('/api', directionsRoutes.routes);
 app.use(express.static(path.join(__dirname, 'vues')));
 
