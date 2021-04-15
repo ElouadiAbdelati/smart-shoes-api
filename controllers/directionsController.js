@@ -15,8 +15,13 @@ const getDirections = async (req, res, next) => {
     try {
         var id;
         //const data = req.body;
-        let origin = req.body.origin;
+        let lat = req.body.latitude;
+        let lng = req.body.altitude;
         let destination = req.body.destination;
+        const urlFinal = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+url3;
+        const respon = await axios.get(urlFinal);
+        let res = respon.data.results[0].formatted_address;
+        let origin = res;
         var res1 = origin.split(" ");
         var res2 = destination.split(" ");
         origin = res1.join("+");
@@ -28,6 +33,7 @@ const getDirections = async (req, res, next) => {
         doc.set(Object.assign({}, results))
         .then(() => {
              id = doc.id;
+
             res.send(id);
         });
             
