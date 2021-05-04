@@ -28,5 +28,5 @@ app.use(express.static(path.join(__dirname, 'vues')));
 
 
 
-app.listen(config.port, () => console.log('App is listening on url http://localhost:'+config.port));
+app.listen(process.env.PORT ||config.port, () => console.log('App is listening on url http://localhost:'+config.port));
 // creation of express js server
