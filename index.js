@@ -10,7 +10,7 @@ const request = require('request');
 const urlParse = require('url-parse');
 const queryParse = require('query-string');
 const axios = require('axios'); 
-
+const port = config.port || 8080;
 
 
 //709402117284-3msph73vr5g8ulvc3p4ckrq9lf7q92u7.apps.googleusercontent.com
@@ -28,5 +28,5 @@ app.use(express.static(path.join(__dirname, 'vues')));
 
 
 
-app.listen(config.port, () => console.log('App is listening on url http://localhost:'+config.port));
+app.listen(port, () => console.log('App is listening on url http://localhost:'+config.port));
 // creation of express js server

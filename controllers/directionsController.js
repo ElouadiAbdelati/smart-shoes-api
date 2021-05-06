@@ -13,8 +13,6 @@ const url3 = "&mode=walking&language=fr-FR&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T7
 const getDirections = async (req, res, next) => {
     
     try {
-        var id;
-        //const data = req.body;
         let lat = req.body.latitude;
         let lng = req.body.altitude;
         let destination = req.body.destination;
