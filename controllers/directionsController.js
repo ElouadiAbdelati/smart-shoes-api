@@ -54,7 +54,6 @@ const getLatLng = async (req, res, next) => {
     }
 }
 const getAddress = async (req, res, next) => {
-    
     try {
         let lat = req.body.lat;
         let lng = req.body.lng;
