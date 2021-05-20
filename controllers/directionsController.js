@@ -2,8 +2,8 @@
 const axios = require('axios'); 
 const axiosInstance = new axios();
 const firebase = require('../db.js');
-const dir = require('../models/directions');
 const firestore = firebase.firestore();
+const Directions = require('../models/directions');
 const request = require('request');
 const url = "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&mode=walking&language=fr-FR&key=AIzaSyBz6IDkIKhoUZeqGTurdyjhrv9T71wEInI";
 const url1 = "https://maps.googleapis.com/maps/api/directions/json?origin=";
@@ -29,13 +29,14 @@ const getDirections = async (req, res, next) => {
         console.log(URLCON);
         const response = await axios.get(URLCON);
         let results = response.data.routes[0].legs[0].steps;
+        let nbrSteps = results.length;
         const doc = await firestore.collection('steps').doc();
         doc.set(Object.assign({}, results))
         .then(() => {
-            res.send(doc.id);
+            const direction = new Directions(doc.id,nbrSteps);
+            res.send(direction);
+            
         });
-         
-
     } catch (error) {
         res.status(400).send(error.message);
         
@@ -65,8 +66,24 @@ const getAddress = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
+const destinationReached = async (req, res, next) => {
+    try {
+        let tripId = req.body.tripId;
+
+        // Create a document reference
+        const response = await firestore.collection('steps').doc(tripId).delete();
+
+        // Remove the 'capital' field from the document
+        res.send(response); 
+
+    } catch(error){
+        res.status(400).send(error.message);
+
+    }
+}
 module.exports = {
     getDirections,
     getLatLng,
-    getAddress
+    getAddress,
+    destinationReached
 }

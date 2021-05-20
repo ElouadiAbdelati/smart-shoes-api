@@ -51,7 +51,7 @@ const getDistanceDuration = async (req, res, next) => {
         const durationValue = response.data.rows[0].elements[0].duration.value;
         let change = false;
         if (durationValue<=30) change = true;
-        const dMatrix = new DistanceMatrix(durationText,durationValue,ditanceText,ditanceValue,change,maneuver)
+        const dMatrix = new DistanceMatrix(durationText,durationValue,ditanceText,ditanceValue,change,maneuver);
         res.send(dMatrix);
     } catch (error) {
         res.status(400).send(error.message);
