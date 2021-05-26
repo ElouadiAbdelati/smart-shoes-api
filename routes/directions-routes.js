@@ -12,6 +12,8 @@ const {getDistanceDuration
 
 const {destinationReached
       } = require('../controllers/directionsController');
+const {getTester
+      } = require('../controllers/distancematrixContorller');
 
 
 const router = express.Router();
@@ -23,6 +25,7 @@ router.post('/geocodeRev', getAddress);
 
 router.post('/distancematrix', getDistanceDuration);
 router.post('/finishwalking', destinationReached);
+router.post('/tester', getTester);
 
 router.get('/places/:name', getPlaces);
 

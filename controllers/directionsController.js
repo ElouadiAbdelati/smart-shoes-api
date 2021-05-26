@@ -28,18 +28,19 @@ const getDirections = async (req, res, next) => {
         let URLCON = url1 + origin + url2 + destination + url3;
         console.log(URLCON);
         const response = await axios.get(URLCON);
-        let results = response.data.routes[0].legs[0].steps;
+        let results = response.data.routes[0].legs[0];
+        let durationValue = response.data.routes[0].legs[0].duration.value;
+        let distanceValue = response.data.routes[0].legs[0].distance.value;
         let nbrSteps = results.length;
         const doc = await firestore.collection('steps').doc();
         doc.set(Object.assign({}, results))
         .then(() => {
-            const direction = new Directions(doc.id,nbrSteps);
+            const direction = new Directions(doc.id,nbrSteps,distanceValue,durationValue);
             res.send(direction);
             
         });
     } catch (error) {
-        res.status(400).send(error.message);
-        
+        res.status(400).send(error.message);   
     }
 }
 const getLatLng = async (req, res, next) => {
