@@ -16,6 +16,8 @@ const getDirections = async (req, res, next) => {
         let lat = req.body.latitude;
         let lng = req.body.altitude;
         let destination = req.body.destination;
+    
+
         const urlFinal = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lng+url3;
         const respon = await axios.get(urlFinal);
         let origin = respon.data.results[0].formatted_address;
@@ -28,7 +30,7 @@ const getDirections = async (req, res, next) => {
         let URLCON = url1 + origin + url2 + destination + url3;
         console.log(URLCON);
         const response = await axios.get(URLCON);
-        let results = response.data.routes[0].legs[0];
+        let results = response.data.routes[0].legs[0].steps;
         let durationValue = response.data.routes[0].legs[0].duration.value;
         let distanceValue = response.data.routes[0].legs[0].distance.value;
         let nbrSteps = results.length;
@@ -36,6 +38,7 @@ const getDirections = async (req, res, next) => {
         doc.set(Object.assign({}, results))
         .then(() => {
             const direction = new Directions(doc.id,nbrSteps,distanceValue,durationValue);
+            console.log({direction});
             res.send(direction);
             
         });
@@ -69,10 +72,10 @@ const getAddress = async (req, res, next) => {
 }
 const destinationReached = async (req, res, next) => {
     try {
-        let tripId = req.body.tripId;
+        let id = req.body.id;
 
         // Create a document reference
-        const response = await firestore.collection('steps').doc(tripId).delete();
+        const response = await firestore.collection('steps').doc(id).delete();
 
         // Remove the 'capital' field from the document
         res.send(response); 

@@ -1,7 +1,7 @@
 class Directions {
     constructor(id,nbrsteps,distanceValue,durationValue){
             this.id = id;
-            this.nbrsteps = nbrsteps;
+            this.nbrSteps = nbrsteps;
             this.distanceValue = distanceValue;
             this.durationValue = durationValue;
     }
