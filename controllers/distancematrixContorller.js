@@ -35,7 +35,7 @@ const getDistanceDuration = async (req, res, next) => {
         let originLng = req.body.originLng;
         let nextStepId = req.body.nextStepId;
         let id = req.body.id;
-
+       console.log("sdcsdcsdcsdc ",originLat, originLng, nextStepId ,id);
         const trip = await firestore.collection('steps').doc(id);
         const data = await trip.get();
         const array = data.data();
